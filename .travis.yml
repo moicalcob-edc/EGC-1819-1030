@@ -22,3 +22,10 @@ script:
 branches:
   only:
     - master
+deploy:
+  provider: heroku
+  app: examen-egc-202000
+  strategy: git
+  api_key: $HEROKU_TOKEN
+  on:
+    branch: master
