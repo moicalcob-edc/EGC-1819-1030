@@ -1,0 +1,24 @@
+dist: xenial
+services:
+- postgresql
+addons:
+  postgresql: '9.4'
+before_script:
+- psql -U postgres -c "create user decide password 'decide'"
+- psql -U postgres -c "create database test_decide owner decide"
+- psql -U postgres -c "ALTER USER decide CREATEDB"
+language: python
+python:
+- '3.6'
+install:
+- pip install -r requirements.txt
+- pip install django-chartjs
+script:
+- cd decide
+- cp travis_local_settings.py local_settings.py
+- python3 ./manage.py makemigrations
+- python3 ./manage.py migrate
+- python3 ./manage.py test
+branches:
+  only:
+    - master
