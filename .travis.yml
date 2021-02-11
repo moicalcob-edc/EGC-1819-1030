@@ -16,6 +16,6 @@ install:
 script:
 - cd decide
 - cp travis_local_settings.py local_settings.py
-- ./manage.py makemigrations
-- ./manage.py migrate
+- python3 ./manage.py makemigrations
+- python3 ./manage.py migrate
 - python manage.py collectstatic
