@@ -18,3 +18,7 @@ script:
 - cp travis_local_settings.py local_settings.py
 - python3 ./manage.py makemigrations
 - python3 ./manage.py migrate
+- python3 ./manage.py test mixnet
+branches:
+  only:
+    - master
